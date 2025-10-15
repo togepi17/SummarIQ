@@ -1,0 +1,16 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+flask = "*"
+markdown = "*"
+langchain = "*"
+langchain-google-genai = "*"
+pypdf2 = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.13"

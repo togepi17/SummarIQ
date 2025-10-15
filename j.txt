@@ -1,0 +1,13 @@
+USER Submits Answers
+SET Score = 0
+
+FOR each Question:
+    IF User Answer == Correct Answer THEN
+        Increment Score
+        Display "Correct!"
+    ELSE
+        Display "Incorrect. Show Explanation"
+    END IF
+END FOR
+
+DISPLAY Score and Feedback

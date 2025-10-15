@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>SummarIQ </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+      body { background: #f9f9f9; font-family: Arial, sans-serif; }
+      .container { max-width: 600px; margin-top: 50px; }
+      .card { padding: 20px; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <h1 class="mb-4 text-center">SummarIQ </h1>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="alert alert-danger">
+              {% for message in messages %}
+                <p>{{ message }}</p>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+        <form method="post" enctype="multipart/form-data">
+          <div class="mb-3">
+            <label for="file" class="form-label">Upload File (TXT or PDF):</label>
+            <input type="file" class="form-control" id="file" name="file" required>
+          </div>
+          <div class="mb-3">
+            <label for="method" class="form-label">Select Summarization Method:</label>
+            <select class="form-select" id="method" name="method" required>
+              {% for key, desc in method_descriptions.items() %}
+              <option value="{{ key }}">{{ key|capitalize }} - {{ desc }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary w-100">Summarize Now</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

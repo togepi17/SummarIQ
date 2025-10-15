@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Quiz Time</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+      body { background: #f9f9f9; font-family: Arial, sans-serif; }
+      .container { max-width: 800px; margin-top: 30px; }
+      .card { padding: 20px; }
+      .question { margin-bottom: 20px; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <h1 class="text-center mb-4">Quiz Time!</h1>
+        <form method="post" action="{{ url_for('submit_quiz') }}">
+          {% for q in quiz %}
+            {% set q_index = loop.index0 %}
+            <div class="question">
+              <h5>Q{{ loop.index }} ({{ q.difficulty|capitalize }}): {{ q.question }}</h5>
+              {% for key, opt in q.options.items() %}
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="q{{ q_index }}" id="q{{ q_index }}_{{ key }}" value="{{ key }}" required>
+                  <label class="form-check-label" for="q{{ q_index }}_{{ key }}">
+                    <strong>{{ key }}.</strong> {{ opt }}
+                  </label>
+                </div>
+              {% endfor %}
+            </div>
+          {% endfor %}
+          <button type="submit" class="btn btn-primary w-100">Submit Quiz</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
